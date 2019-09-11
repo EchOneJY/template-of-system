@@ -1,0 +1,5 @@
+export const  CHANGE_INPUT = 'changeInput'
+export const  ADD_ITEM = 'addItem'
+export const  DELETE_ITEM = 'deleteItem'
+export const  TOGGLE_HEADER_TYPE = 'toggleHeaderType'
+export const  TOGGLE_SIDER_MENU = 'toggleSiderMenu'

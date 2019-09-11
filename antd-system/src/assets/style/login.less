@@ -1,0 +1,95 @@
+.login-page {
+    background-color: #EDF4FA;
+    height: 100%;
+    position: relative;
+    // Particles
+    .particle-canvas {
+        position:fixed !important;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+    }
+    // 层
+    .layer {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      &.flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+    // 背景
+    .bg {
+      canvas {
+        display: block;
+        margin: 0px;
+        padding: 0px;
+      }
+    }
+    // logo
+    .logo-group {
+      margin-top: -75px - 70px;
+      position: relative;
+      top: 50px;
+      z-index: 10;
+      img {
+        height: 140px;
+      }
+      .avatar {
+        border-radius: 50%;
+        height: 100px;
+      }
+    }
+    // 登陆表单
+    .form-group {
+      width: 300px;
+      // 重新设置卡片阴影
+      .ant-card {
+        box-shadow: 0 0 8px 0 rgba(232,237,250,.6), 0 2px 4px 0 rgba(232,237,250,.5);
+        border-radius: 4px;
+        .ant-card-body {
+          padding: 70px 24px 18px 24px;
+        }
+      }
+      // 登陆按钮
+      .button-login {
+        width: 100%;
+        height: 36px;
+      }
+      .login-code {
+        height: 36px;
+        display: block;
+        margin: 0px -20px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+      .captcha {
+          height: 34px;
+      }
+      .ant-input {
+          height: 36px;
+          
+      }
+      .captcha-input {
+        .ant-input-group-addon {
+            color: #a6a7a8;
+            font-size: 14px;
+            padding: 0 8px;
+            &:last-child {
+                padding: 0;
+            }
+        }
+      }
+     
+    }
+    // 帮助按钮
+    .button-help {
+      width: 300px;
+      margin-top: 20px;
+    }
+    
+  }
