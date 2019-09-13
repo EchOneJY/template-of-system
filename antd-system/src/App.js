@@ -8,7 +8,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './pages/login'
-import Admin from './pages/admin/index.js'
+import Admin from './pages/admin'
 
 class App extends Component {
   render() {

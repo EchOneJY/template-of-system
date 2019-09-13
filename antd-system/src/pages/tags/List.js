@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryAndTags from '../../components/CategoryAndTags'
+import CategoryAndTags from 'components/CategoryAndTags'
 
 const TagsList = () => {
   return <CategoryAndTags showType="1" />

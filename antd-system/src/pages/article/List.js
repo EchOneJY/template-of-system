@@ -1,12 +1,12 @@
 import * as React from 'react'
-import BreadcrumbCustom from '../../components/BreadcrumbCustom'
+import BreadcrumbCustom from '@/components/BreadcrumbCustom'
 import { Table, Pagination, Tag, Button, Switch, Modal, message } from 'antd'
 import {
   queryArticleList,
   deleteArticle,
   changeTop,
   changePrivate
-} from '../../api'
+} from '@/api'
 
 const { confirm } = Modal
 

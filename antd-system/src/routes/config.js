@@ -7,14 +7,14 @@
  */
 import Home from '../pages/home'
 import ArticleList from '../pages/article/List'
-import ArticleAdd from '../pages/article/Add.js'
-import ArticleDetail from '../pages/article/Detail.js'
-import CategoryList from '../pages/category/List.js'
-import TagsList from '../pages/tags/List.js'
-import ButonCustom from '../pages/ui/Button.js'
-import AlertCustom from '../pages/ui/Alert.js'
-import BraftEditor from '../pages/editors/BraftEditor.js'
-import ReactMde from '../pages/editors/ReactMde.js'
+import ArticleAdd from '../pages/article/Add'
+import ArticleDetail from '../pages/article/Detail'
+import CategoryList from '../pages/category/List'
+import TagsList from '../pages/tags/List'
+import ButonCustom from '../pages/ui/Button'
+import AlertCustom from '../pages/ui/Alert'
+import BraftEditor from '../pages/editors/BraftEditor'
+import ReactMde from '../pages/editors/ReactMde'
 
 let routes = [
   {

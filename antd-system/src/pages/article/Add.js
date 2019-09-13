@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Form, Input, Button, Switch, Select, message } from 'antd'
-import { queryCategory, addArticle, getTagsList } from '../../api'
+import { queryCategory, addArticle, getTagsList } from '@/api'
 import ReactMde from 'react-mde'
 import * as Showdown from 'showdown'
 import 'react-mde/lib/styles/css/react-mde-all.css'

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Layout, Icon, message } from 'antd'
-import Routes from '../../routes'
-import Memory from '../../utils/memory'
-import SiderCustom from '../../components/SiderCustom'
-import HeaderCustom from '../../components/HeaderCustom'
+import Routes from '@/routes'
+import Memory from '@/utils/memory'
+import SiderCustom from '@/components/SiderCustom'
+import HeaderCustom from '@/components/HeaderCustom'
 import { Provider } from 'react-redux'
-import store from '../../store'
+import store from '@/store'
 
 const { Header, Sider, Content } = Layout
 
