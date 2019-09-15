@@ -39,7 +39,8 @@ const Home = ({ ...props }) => {
     <div>
       <div>
         <Input
-          placeholder={inputValue}
+          value={inputValue}
+          placeholder="Write Something"
           style={{ width: '250px', marginRight: '10px' }}
           onChange={changeInputVal}
         />
