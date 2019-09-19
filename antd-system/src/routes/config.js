@@ -15,6 +15,7 @@ import ButonCustom from '../pages/ui/Button'
 import AlertCustom from '../pages/ui/Alert'
 import BraftEditor from '../pages/editors/BraftEditor'
 import ReactMde from '../pages/editors/ReactMde'
+import Echarts from '../pages/charts/echarts/SimplePie'
 
 let routes = [
   {
@@ -56,6 +57,10 @@ let routes = [
   {
     path: '/editor/mde',
     component: ReactMde
+  },
+  {
+    path: '/charts/echarts',
+    component: Echarts
   }
 ]
 
