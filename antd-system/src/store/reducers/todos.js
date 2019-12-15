@@ -23,7 +23,7 @@ export default (state = defaultState, action) => {
   }
   if (action.type === DELETE_ITEM) {
     let newState = JSON.parse(JSON.stringify(state))
-    newState.list.splice(action.idx, 1)
+    newState.list.splice(action.index, 1)
     return newState
   }
   return state

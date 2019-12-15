@@ -94,7 +94,7 @@ const ArticleList = ({ ...props }) => {
         <span>
           <span
             className="link-button"
-            onClick={() => props.history.push('/article/detail/' + record.id)}
+            onClick={() => props.history.push('/article/detail/' + record._id)}
           >
             编辑
           </span>

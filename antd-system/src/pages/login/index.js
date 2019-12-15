@@ -37,7 +37,7 @@ const Login = ({ form, history }) => {
         } else {
           message.error(response.data.msg)
           form.setFieldsValue({ code: '' })
-          this.getNewCaptcha()
+          getNewCaptcha()
         }
       }
     })
