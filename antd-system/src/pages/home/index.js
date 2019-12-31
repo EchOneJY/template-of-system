@@ -1,11 +1,11 @@
 import React from 'react'
 import { Input, Button, List } from 'antd'
 import { connect } from 'react-redux'
-// import store from '@/store'
 import {
   changeInputAction,
   addItemAction,
-  deleteItemAction
+  deleteItemAction,
+  getMyListAction
 } from '@/store/actionCreators'
 
 const Home = ({ ...props }) => {
@@ -34,7 +34,10 @@ const Home = ({ ...props }) => {
   //     store.dispatch(action)
   // }
 
-  const { inputValue, changeInputVal, addEvents, list, deleteItem } = props
+  React.useEffect(() => {
+    getMyListAction()
+  }, [])
+  //const { inputValue, changeInputVal, addEvents, list, deleteItem } = props
   return (
     <div>
       <div>
@@ -42,9 +45,9 @@ const Home = ({ ...props }) => {
           value={inputValue}
           placeholder="Write Something"
           style={{ width: '250px', marginRight: '10px' }}
-          onChange={changeInputVal}
+          onChange={changeInputAction}
         />
-        <Button type="primary" onClick={addEvents}>
+        <Button type="primary" onClick={addItemAction}>
           增加
         </Button>
       </div>
@@ -55,7 +58,9 @@ const Home = ({ ...props }) => {
           dataSource={list}
           //关键代码-----------end
           renderItem={(item, index) => (
-            <List.Item onClick={() => deleteItem(index)}>{item}</List.Item>
+            <List.Item onClick={() => deleteItemAction(index)}>
+              {item}
+            </List.Item>
           )}
         />
       </div>
@@ -63,31 +68,32 @@ const Home = ({ ...props }) => {
   )
 }
 
-const stateToProps = state => {
-  return {
-    inputValue: state.todos.inputValue,
-    list: state.todos.list
-  }
-}
+// const stateToProps = state => {
+//   return {
+//     inputValue: state.todos.inputValue,
+//     list: state.todos.list
+//   }
+// }
 
-const dispatchToProps = dispatch => {
-  return {
-    changeInputVal(e) {
-      const action = changeInputAction(e.target.value)
-      dispatch(action)
-    },
-    addEvents() {
-      const action = addItemAction()
-      dispatch(action)
-    },
-    deleteItem(idx) {
-      const action = deleteItemAction(idx)
-      dispatch(action)
-    }
-  }
-}
+// const dispatchToProps = dispatch => {
+//   return {
+//     changeInputVal(e) {
+//       const action = changeInputAction(e.target.value)
+//       dispatch(action)
+//     },
+//     addEvents() {
+//       const action = addItemAction()
+//       dispatch(action)
+//     },
+//     deleteItem(idx) {
+//       const action = deleteItemAction(idx)
+//       dispatch(action)
+//     }
+//   }
+// }
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(Home)
+// export default connect(
+//   stateToProps,
+//   dispatchToProps
+// )(Home)
+export default Home
