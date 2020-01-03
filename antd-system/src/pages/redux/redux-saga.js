@@ -11,7 +11,7 @@ import {
   initListAsync
 } from '@/store/actionCreators'
 
-class Home extends React.Component {
+class ReduxTest extends React.Component {
   // constructor(props) {
   //   super(props)
   //   this.state = store.getState()
@@ -119,4 +119,4 @@ const dispatchToProps = dispatch => {
 export default connect(
   stateToProps,
   dispatchToProps
-)(Home)
+)(ReduxTest)

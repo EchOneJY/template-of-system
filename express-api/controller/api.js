@@ -62,6 +62,13 @@ const callback = function (err, data, res) {
 
 
 module.exports = {
+    reduxTestList: (req, res) => {
+      res.send({
+          'code': 1,
+          'data': ['Hello Redux', 'Hello Redux-Saga'],
+          'msg': 'success',
+      });
+    },
     deleteFile: (req, res) => {
         const file_name = req.body.file_name;
         const type = {
