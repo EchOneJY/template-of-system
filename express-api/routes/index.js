@@ -39,6 +39,7 @@ router.post('/pwd/detect', Api.detectPwd);
 router.post('/captcha', Api.getCaptcha);
 router.post('/login', Api.login);
 router.post('/delete/file', Api.deleteFile);
+router.post('/redux/test', Api.reduxTestList);
 
 
 

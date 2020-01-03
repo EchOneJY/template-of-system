@@ -1,4 +1,4 @@
-import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from '../actionTypes'
+import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM, INIT_LIST_ACTION } from '../actionTypes'
 import { message } from 'antd'
 
 const defaultState = {
@@ -24,6 +24,11 @@ export default (state = defaultState, action) => {
   if (action.type === DELETE_ITEM) {
     let newState = JSON.parse(JSON.stringify(state))
     newState.list.splice(action.index, 1)
+    return newState
+  }
+  if (action.type === INIT_LIST_ACTION) {
+    let newState = JSON.parse(JSON.stringify(state))
+    newState.list = action.list
     return newState
   }
   return state

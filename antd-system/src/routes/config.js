@@ -16,6 +16,10 @@ import AlertCustom from '../pages/ui/Alert'
 import BraftEditor from '../pages/editors/BraftEditor'
 import ReactMde from '../pages/editors/ReactMde'
 import Echarts from '../pages/charts/echarts/SimplePie'
+import Redux from '../pages/redux/redux'
+import ReactRedux from '../pages/redux/react-redux'
+import ReduxThunk from '../pages/redux/redux-thunk'
+import ReduxSaga from '../pages/redux/redux-saga'
 
 let routes = [
   {
@@ -61,6 +65,22 @@ let routes = [
   {
     path: '/charts/echarts',
     component: Echarts
+  },
+  {
+    path: '/redux/redux',
+    component: Redux
+  },
+  {
+    path: '/redux/react_redux',
+    component: ReactRedux
+  },
+  {
+    path: '/redux/redux_thunk',
+    component: ReduxThunk
+  },
+  {
+    path: '/redux/redux_saga',
+    component: ReduxSaga
   }
 ]
 

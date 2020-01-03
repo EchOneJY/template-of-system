@@ -4,8 +4,9 @@ import {
   DELETE_ITEM,
   TOGGLE_SIDER_MENU,
   TOGGLE_HEADER_TYPE,
-  GET_MY_LIST
+  INIT_LIST_ACTION
 } from './actionTypes'
+import { queryTodoList } from '@/api'
 
 export const changeInputAction = value => ({
   type: CHANGE_INPUT,
@@ -31,6 +32,18 @@ export const toogleSiderMenu = list => ({
   list
 })
 
-export const getMyListAction = () => ({
-  type: GET_MY_LIST
+export const initListAction = list => ({
+  type: INIT_LIST_ACTION,
+  list
 })
+
+//redux-thunk
+export const initListAsync = () => {
+  return async (dispatch) => {
+    const response = await queryTodoList()
+    if(response.data.code === 1) {
+      const action = initListAction(response.data.data)
+      dispatch(action)
+    }
+  }
+}

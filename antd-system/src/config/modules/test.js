@@ -52,5 +52,37 @@ export default [
         type: 'charts'
       }
     ]
+  },
+  {
+    title: 'Redux',
+    icon: 'retweet',
+    key: '/redux',
+    type: 'redux',
+    children: [
+      {
+        title: 'redux',
+        icon: 'up-square',
+        key: '/redux/redux',
+        type: 'redux'
+      },
+      {
+        title: 'react-redux',
+        icon: 'right-square',
+        key: '/redux/react_redux',
+        type: 'redux'
+      },
+      {
+        title: 'redux-thunk',
+        icon: 'down-square',
+        key: '/redux/redux_thunk',
+        type: 'redux'
+      },
+      {
+        title: 'redux-saga',
+        icon: 'left-square',
+        key: '/redux/redux_saga',
+        type: 'redux'
+      }
+    ]
   }
 ]

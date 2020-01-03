@@ -126,7 +126,7 @@ const ArticleList = ({ ...props }) => {
     const response = await queryArticleList(data)
     if (response.data.code === 1) {
       let dataSource = response.data.data
-      dataSource.map(item => {
+      dataSource.forEach(item => {
         item.key = item._id
         item.visible = item.private
       })

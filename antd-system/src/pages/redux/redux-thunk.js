@@ -1,6 +1,5 @@
 import React from 'react'
 import { Input, Button, List } from 'antd'
-import store from '@/store'
 import { connect } from 'react-redux'
 // import store from '@/store'
 // import { queryTodoList } from '@/api'
@@ -12,7 +11,7 @@ import {
   initListAsync
 } from '@/store/actionCreators'
 
-class Home extends React.Component {
+class ReduxTest extends React.Component {
   // constructor(props) {
   //   super(props)
   //   this.state = store.getState()
@@ -26,23 +25,24 @@ class Home extends React.Component {
     this.props.initList()
   }
 
-  changeInputVal = e => {
-    const action = changeInputAction(e.target.value)
-    store.dispatch(action)
-  }
+  // changeInputVal = (e) => {
+  //     const action = changeInputAction(e.target.value)
+  //     store.dispatch(action)
+  // }
 
-  addEvents = () => {
-    const action = addItemAction()
-    store.dispatch(action)
-  }
+  // addEvents = () => {
+  //     const action = addItemAction
+  //     store.dispatch(action)
+  // }
 
-  deleteItem = idx => {
-    const action = deleteItemAction(idx)
-    store.dispatch(action)
-  }
+  // deleteItem = (idx) => {
+  //     const action = deleteItemAction(idx)
+  //     store.dispatch(action)
+  // }
 
   // const { inputValue, changeInputVal, addEvents, list, deleteItem } = props
   render() {
+    
     return (
       <div>
         <div>
@@ -72,6 +72,7 @@ class Home extends React.Component {
       </div>
     )
   }
+
 }
 
 const stateToProps = state => {
@@ -100,8 +101,8 @@ const dispatchToProps = dispatch => {
     //     const action = initListAsync()
     //     dispatch(action)
     // },
-    //redux-saga
-    initList() {
+     //redux-saga
+     initList() {
       const action = initListAction()
       dispatch(action)
     }
@@ -115,4 +116,7 @@ const dispatchToProps = dispatch => {
   }
 }
 
-export default connect(stateToProps, dispatchToProps)(Home)
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(ReduxTest)

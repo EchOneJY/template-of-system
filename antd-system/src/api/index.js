@@ -47,3 +47,6 @@ export const updateArticle = data => fetchData('/article/update',data)
 export const changeTop = data => fetchData('/article/change/top',data)
 //改变可见
 export const changePrivate = data => fetchData('/article/change/private',data)
+
+//redux列表查询
+export const queryTodoList = () => fetchData('/redux/test')
