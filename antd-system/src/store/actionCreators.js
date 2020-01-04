@@ -4,7 +4,10 @@ import {
   DELETE_ITEM,
   TOGGLE_SIDER_MENU,
   TOGGLE_HEADER_TYPE,
-  INIT_LIST_ACTION
+  INIT_LIST_ACTION,
+  INIT_LIST_ACTION_SAGA,
+  TOGGLE_TEXT_VAL,
+  TOGGLE_SELECT_TAB
 } from './actionTypes'
 import { queryTodoList } from '@/api'
 
@@ -37,11 +40,28 @@ export const initListAction = list => ({
   list
 })
 
+export const initListActionSaga = () => ({
+  type: INIT_LIST_ACTION_SAGA
+})
+
+export const toogleTextVal = value => ({
+  type: TOGGLE_TEXT_VAL,
+  value
+})
+
+export const toogleSelectTab = value => ({
+  type: TOGGLE_SELECT_TAB,
+  value
+})
+
 //redux-thunk
-export const initListAsync = () => {
-  return async (dispatch) => {
-    const response = await queryTodoList()
-    if(response.data.code === 1) {
+export const initListActionThunk = () => {
+  return async dispatch => {
+    const data = {
+      type: '02'
+    }
+    const response = await queryTodoList(data)
+    if (response.data.code === 1) {
       const action = initListAction(response.data.data)
       dispatch(action)
     }

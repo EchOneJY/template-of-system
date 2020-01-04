@@ -1,4 +1,9 @@
-import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM, INIT_LIST_ACTION } from '../actionTypes'
+import {
+  CHANGE_INPUT,
+  ADD_ITEM,
+  DELETE_ITEM,
+  INIT_LIST_ACTION
+} from '../actionTypes'
 import { message } from 'antd'
 
 const defaultState = {
