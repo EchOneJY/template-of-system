@@ -5,7 +5,7 @@ import Memory from '@/utils/memory'
 import SiderCustom from '@/components/SiderCustom'
 import HeaderCustom from '@/components/HeaderCustom'
 import { Provider } from 'react-redux'
-import store from '@/store'
+// import store from '@/store'
 
 const { Header, Sider, Content } = Layout
 
@@ -22,7 +22,6 @@ const Admin: React.FC = ({ history }) => {
   })
 
   return (
-    <Provider store={store}>
       <Layout className="ant-layout">
         <Sider trigger={null} theme="light" collapsible collapsed={collapsed}>
           <SiderCustom collapsed={collapsed} />
@@ -48,7 +47,6 @@ const Admin: React.FC = ({ history }) => {
           </Content>
         </Layout>
       </Layout>
-    </Provider>
   )
 }
 

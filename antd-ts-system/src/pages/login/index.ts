@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Card, Spin, message } from 'antd'
+import { FormComponentProps } from 'antd/es/form'
 import Particles from 'react-particles-js'
 import config from './config/default'
 import { reqLogin, getCaptcha } from '@/api'
@@ -8,10 +9,14 @@ import Storage from '@/utils/storage'
 /**
  * 登录的路由组件
  */
+interface LoginParamsType extends FormComponentProps {
+  username: string
+  password: string
+  code: string
+}
+// const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
 
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
-
-const Login: React.FC = ({ form, history }) => {
+const Login: React.FC<LoginParamsType, any> = ({ form, history }) => {
   const [captcha, setCaptcha] = React.useState('')
   const [captchaLoading, setCaptchaLoading] = React.useState(false)
 
@@ -25,9 +30,9 @@ const Login: React.FC = ({ form, history }) => {
     }
   }, [history])
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    form.validateFields(async (err, values) => {
+    form.validateFields(async (err, values:LoginParamsType) => {
       if (!err) {
         const response = await reqLogin(values)
         if (response.data.code === 2 || response.data.code === 1) {
@@ -131,7 +136,7 @@ const Login: React.FC = ({ form, history }) => {
                     className="captcha-input"
                     maxLength={4}
                     addonAfter={
-                      <Spin spinning={captchaLoading} indicator={antIcon}>
+                      <Spin spinning={captchaLoading} >
                         <div
                           className="captcha"
                           onClick={getNewCaptcha}
