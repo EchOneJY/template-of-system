@@ -6,7 +6,7 @@ import axios from 'axios';
 import { message } from 'antd';
 import qs from 'qs';
 
-export default function fetchData(url:string,data={},method='POST') {
+export default function fetchData(url:string,data={},method='POST'):Promise<any> {
     return new Promise((resolve,reject) => {
         let promise
         if(method === 'GET') { 
@@ -16,10 +16,11 @@ export default function fetchData(url:string,data={},method='POST') {
         }else {
             promise = axios.post(url,qs.stringify(data))
         }
-        promise.then((response:any) => {
+        promise.then(response => {
             resolve(response)
-        }).catch((error:any) => {
+        }).catch(error => {
             message.error('请求出错!'+error.message)
+            reject(error)
         })
     })
 

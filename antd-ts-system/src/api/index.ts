@@ -5,15 +5,17 @@
  * @LastEditTime: 2019-08-15 10:11:04
  * @Description: 接口模块封装
  */
-export interface LoginParamsType {
+
+import fetchData from './axios'
+
+interface LoginParamsType {
   username: string
   password: string
   code: string
 }
 
-import fetchData from './axios'
 //登录
-export const reqLogin = (data: LoginParamsType) => fetchData('/login', data)
+export const reqLogin = (data:LoginParamsType) => fetchData('/login', data)
 //验证码
 export const getCaptcha = () => fetchData('/captcha')
 
