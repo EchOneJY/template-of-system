@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Form, Icon, Input, Button, Card, Spin, message } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
+import { RouteComponentProps } from 'react-router-dom'
 import Particles from 'react-particles-js'
+import Storage from '@/utils/storage'
+import Memory from '@/utils/memory'
 import config from './config/default'
 import { reqLogin, getCaptcha } from '@/api'
 
@@ -10,18 +13,11 @@ interface UserFormProps extends FormComponentProps {
   password: string
   code: string
 }
-interface IAppProps {
-  form?: any,
-  history?:any
-}
- 
-export interface LoginState {
-  
-}
 
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
+const storage = new Storage()
  
-class Login extends React.Component<UserFormProps & IAppProps> {
+class Login extends React.Component<UserFormProps & RouteComponentProps> {
     state = {
       captcha: '',
       captchaLoading: false
@@ -29,7 +25,7 @@ class Login extends React.Component<UserFormProps & IAppProps> {
 
     componentWillMount() {
       this.getNewCaptcha()
-      console.log(this.props)
+      console.log(Storage)
     }
 
     handleSubmit = (e:any) => {
@@ -38,8 +34,8 @@ class Login extends React.Component<UserFormProps & IAppProps> {
         if (!err) {
           const response = await reqLogin(values)
           if (response.data.code === 2 || response.data.code === 1) {
-            // Memory.user = response.data.data //保存在内存中
-            // Storage.set('USER_KEY', response.data.data) //保存到本地缓存
+            Memory.user = response.data.data //保存在内存中
+            storage.set('USER_KEY', response.data.data) //保存到本地缓存
             this.props.history.push('/admin')
           } else {
             message.error(response.data.msg)

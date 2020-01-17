@@ -25,5 +25,3 @@ export default function fetchData(url:string,data={},method='POST'):Promise<any>
     })
 
 }
-
-//请求登录接口
