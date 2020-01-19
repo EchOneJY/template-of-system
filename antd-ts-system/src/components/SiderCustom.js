@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {  Menu, Icon } from 'antd'
-import { menuAside } from '../config/menuList'
+import { menuAside } from '../config/menu/menuList'
 
 const { SubMenu } = Menu
 
