@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 // import todos from './todos'
-import headerType from './headerType'
-import siderMenu from './siderMenu'
+import menu from './menu'
+import user from './user'
 
 export default combineReducers({
   // todos,
-  headerType,
-  siderMenu
+  menu,
+  user
 })

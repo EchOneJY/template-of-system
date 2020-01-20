@@ -4,31 +4,20 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import Memory from '../utils/memory';
 import Storage from '../utils/storage';
-import { menuHeader } from '../config/menu/menuList'
+import { menuHeader,MenuType } from '../config/menu/menuList'
 import { toogleHeaderType } from '../store/actionCreators'
+import { StoreState } from '../store'
 
 const { SubMenu } = Menu;
 const { confirm } = Modal;
 const storage = new Storage()
 
-interface MenuType {
-  key: string
-  title: string
-  icon: string
-  type: string
-}
-
 const HeaderCustom = function ({...props}) { 
     const [username,setUserName] = useState('')
-
-    // useEffect(() => {
-    //     const user = Memory.user
-    //     if(!user || !user.uuid) {
-    //         props.history.push('/login')
-    //     }else {
-    //         setUserName(user.username)
-    //     }
-    // })
+    useEffect(() => {
+      console.log(props)
+      setUserName(props.username)
+    },[])
 
     const goToPage = (item:MenuType) => {
         props.history.push(item.key)
@@ -51,7 +40,7 @@ const HeaderCustom = function ({...props}) {
     }
 
     //根据数组数据生成标签数据
-    const getMenuNodes = (list) => {
+    const getMenuNodes = (list:any[]) => {
         const path = props.location.pathname
         return list.map(item => {
             if(!item.children) {
@@ -71,7 +60,7 @@ const HeaderCustom = function ({...props}) {
                 )
             }else {
                 //匹配当前子列表路径
-                const cItem = item.children.find(cItem => cItem.key === path)
+                const cItem = item.children.find((cItem:MenuType) => cItem.key === path)
                 if(cItem) {
                     if(props.headerType !== item.type) {
                         props.toogleHeaderType(cItem.type)
@@ -122,15 +111,16 @@ const HeaderCustom = function ({...props}) {
     )
 }
 
-const mapStateToProps = (state) => (
+const mapStateToProps = ({menu,user}: StoreState) => (
     {
-        headerType: state.headerType
+        headerType: menu.type,
+        username: user.username
     }
 )
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch:any) => (
     {
-        toogleHeaderType: type => {
+        toogleHeaderType: (type:string) => {
             const action = toogleHeaderType(type)
             dispatch(action)
         }

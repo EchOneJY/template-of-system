@@ -2,12 +2,27 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {  Menu, Icon } from 'antd'
-import { menuAside } from '../config/menu/menuList'
+import { menuAside, MenuType } from '../config/menu/menuList'
+import { StoreState } from '../store'
+import { RouteComponentProps } from 'react-router-dom';
 
 const { SubMenu } = Menu
 
-class SiderCustom extends Component {
-    constructor(props) {
+interface ComponentProps {
+  headerType: string
+  collapsed: boolean
+}
+
+interface StateType {
+  num: number
+}
+
+type IProps = ComponentProps & RouteComponentProps
+
+class SiderCustom extends Component<IProps,StateType> {
+    hasMenuAside = false
+    menuNodes = null
+    constructor(props:IProps) {
         super(props);
         this.state = {
             num: 1
@@ -16,7 +31,7 @@ class SiderCustom extends Component {
 
     componentWillMount() {
         this.showSiderMenuList(this.props.headerType)
-        this.num = 0
+        this.setState({num: 0})
     }
 
     componentDidMount(){
@@ -27,11 +42,11 @@ class SiderCustom extends Component {
         this.getTitle(menuAside)
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps:IProps) {
         this.showSiderMenuList(nextProps.headerType)
     }
 
-    showSiderMenuList(type) {
+    showSiderMenuList(type:string) {
         const list = menuAside.find(item => item.type === type)
         if(list) {
             if(list.hasOwnProperty('children')){
@@ -45,14 +60,14 @@ class SiderCustom extends Component {
         }
     }
  
-    getTitle = (list) => {
+    getTitle = (list:any[]) => {
         const path = this.props.location.pathname
         list.map(item => {
             if(!item.children) {
                 document.title = item.title
             }else {
                  //匹配当前子列表路径
-                 const cItem = item.children.find(cItem => cItem.key === path)
+                 const cItem = item.children.find((cItem:MenuType) => cItem.key === path)
                  if(cItem) {
                      document.title = item.title+'-'+cItem.title
                  }
@@ -61,7 +76,7 @@ class SiderCustom extends Component {
     }
   
     //根据数组数据生成标签数据
-    getMenuNodes = (list) => {
+    getMenuNodes = (list:any[]) => {
         return list.map(item => {
             if(!item.children) {
                 return (
@@ -129,9 +144,9 @@ class SiderCustom extends Component {
     }
 }
  
-const mapStateToProps = state => (
+const mapStateToProps = ({menu} : StoreState) => (
     {
-        headerType: state.headerType
+        headerType: menu.type
     }
 )
 

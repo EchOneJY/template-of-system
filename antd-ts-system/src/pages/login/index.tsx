@@ -5,13 +5,17 @@ import { RouteComponentProps } from 'react-router-dom'
 import Particles from 'react-particles-js'
 import Storage from '@/utils/storage'
 // import Memory from '@/utils/memory'
+import { connect } from 'react-redux'
 import config from './config/default'
 import { reqLogin, getCaptcha } from '@/api'
+import { setUserInfo } from '@/store/actionCreators'
+import { UserState } from '@/store/reducers/user'
 
 interface UserFormProps extends FormComponentProps {
   username: string
   password: string
   code: string
+  setUserInfo:(info:UserState) => void
 }
 
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
@@ -25,6 +29,7 @@ class Login extends React.Component<UserFormProps & RouteComponentProps> {
 
     componentWillMount() {
       this.getNewCaptcha()
+      console.log(this.props)
     }
 
     handleSubmit = (e:any) => {
@@ -33,7 +38,8 @@ class Login extends React.Component<UserFormProps & RouteComponentProps> {
         if (!err) {
           const response = await reqLogin(values)
           if (response.data.code === 2 || response.data.code === 1) {
-            // Memory.user = response.data.data //保存在内存中
+            
+            this.props.setUserInfo(response.data.data)
             storage.set('USER_KEY', response.data.data) //保存到本地缓存
             this.props.history.push('/')
           } else {
@@ -169,6 +175,15 @@ class Login extends React.Component<UserFormProps & RouteComponentProps> {
     }
    
 }
+
+const mapDispatchToProps = (dispatch:any) => (
+  {
+      setUserInfo: (info:UserState) => {
+          const action = setUserInfo(info)
+          dispatch(action)
+      }
+  }
+)
  
 const wrappedLogin = Form.create<UserFormProps>({ name: 'login' })(Login)
-export default wrappedLogin;
+export default connect(null,mapDispatchToProps)(wrappedLogin);

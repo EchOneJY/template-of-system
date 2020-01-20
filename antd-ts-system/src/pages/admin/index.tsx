@@ -6,8 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import Storage from '@/utils/storage'
 import SiderCustom from '@/components/SiderCustom'
 import HeaderCustom from '@/components/HeaderCustom'
-import { Provider } from 'react-redux'
-import store from '@/store'
+
 
 const { Header, Sider, Content } = Layout
 const storage = new Storage()
@@ -25,7 +24,6 @@ const Admin: React.FC<RouteComponentProps> = ({ history }) => {
   },[])
 
   return (
-    <Provider store={store}>
       <Layout className="ant-layout">
         <Sider trigger={null} theme="light" collapsible collapsed={collapsed}>
           <SiderCustom collapsed={collapsed} />
@@ -51,7 +49,6 @@ const Admin: React.FC<RouteComponentProps> = ({ history }) => {
           </Content>
         </Layout>
       </Layout>
-    </Provider>
   )
 }
 

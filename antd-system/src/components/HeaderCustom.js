@@ -138,7 +138,7 @@ const HeaderCustom = function ({...props}) {
         }else {
             setUserName(user.username)
         }
-    })
+    }, [props.history])
 
     const goToPage = (item) => {
         props.history.push(item.key)

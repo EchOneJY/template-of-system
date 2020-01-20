@@ -1,6 +1,14 @@
 import article from './modules/article'
 import test from './modules/test'
 
+export interface MenuType {
+  key: string
+  title: string
+  icon: string
+  type?: string
+  children?: any[]
+} 
+
 // 菜单 顶栏
 export const menuHeader = [{
     key: '/home',
