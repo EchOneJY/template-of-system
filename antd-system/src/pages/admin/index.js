@@ -14,6 +14,7 @@ const Admin = ({ history }) => {
 
   React.useEffect(() => {
     const user = Memory.user
+    console.log(user)
     if (Object.keys(user).length === 0) {
       history.push('/login')
     } else {

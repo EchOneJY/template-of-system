@@ -1,8 +1,20 @@
 import article from './modules/article'
 import test from './modules/test'
 
+export interface MenuType {
+  key: string
+  title: string
+  icon: string
+  type: string
+}
+
+export interface MenuListType extends MenuType {
+  children?: MenuType[]
+}
+
 // 菜单 顶栏
-export const menuHeader = [{
+export const menuHeader = [
+  {
     key: '/home',
     title: '首页',
     icon: 'home',
@@ -21,10 +33,6 @@ export const menuHeader = [{
     children: test
   }
 ]
-   
-// 菜单 侧边栏
-export const menuAside = [
-  ...article,
-  ...test
-]
 
+// 菜单 侧边栏
+export const menuAside = [...article, ...test]

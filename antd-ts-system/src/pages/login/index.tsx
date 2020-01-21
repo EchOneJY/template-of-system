@@ -4,7 +4,7 @@ import { FormComponentProps } from 'antd/es/form'
 import { RouteComponentProps } from 'react-router-dom'
 import Particles from 'react-particles-js'
 import Storage from '@/utils/storage'
-import Memory from '@/utils/memory'
+// import Memory from '@/utils/memory'
 import config from './config/default'
 import { reqLogin, getCaptcha } from '@/api'
 
@@ -25,7 +25,6 @@ class Login extends React.Component<UserFormProps & RouteComponentProps> {
 
     componentWillMount() {
       this.getNewCaptcha()
-      console.log(Storage)
     }
 
     handleSubmit = (e:any) => {
@@ -34,9 +33,9 @@ class Login extends React.Component<UserFormProps & RouteComponentProps> {
         if (!err) {
           const response = await reqLogin(values)
           if (response.data.code === 2 || response.data.code === 1) {
-            Memory.user = response.data.data //保存在内存中
+            // Memory.user = response.data.data //保存在内存中
             storage.set('USER_KEY', response.data.data) //保存到本地缓存
-            this.props.history.push('/admin')
+            this.props.history.push('/')
           } else {
             message.error(response.data.msg)
             this.props.form.setFieldsValue({ code: '' })
