@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Markdown",
+    "roles": ["editor"]
+  },
+  {
+    "name": "Authorizon",
+    "roles": ["visitor"]
+  }
+]

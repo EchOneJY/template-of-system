@@ -1,0 +1,37 @@
+#app {
+  .main-container {
+    min-height: 100%;
+    transition: margin-left 0.3s;
+    margin-left: $sideBarWidth;
+    position: relative;
+  }
+
+  .sidebar-container {
+    width: $sideBarWidth !important;
+    transition: width 0.28s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+
+  .scrollbar-wrapper {
+    overflow-x: hidden !important;
+  }
+
+  .el-scrollbar {
+    height: 100%;
+  }
+
+  .el-scrollbar__view {
+    height: 100%;
+    border-right: solid 1px #e6e6e6;
+  }
+
+  .el-menu {
+    border: none;
+    height: 100%;
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": "eslint-config-egg",
+  "rules": {
+    "semi": ["error", "off"],
+    "trailingComma": "none",
+    "singleQuote": false,
+    "printWidth": 80
+  }
+}

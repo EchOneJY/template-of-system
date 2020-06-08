@@ -1,0 +1,20 @@
+{
+  "name": "koa-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^8.0.8",
+    "koa2-cors": "^2.0.6",
+    "mongoose": "^5.9.2"
+  }
+}
