@@ -6,6 +6,7 @@ module.exports = app => {
     {
       name: { type: String, required: true },
       password: { type: String, required: true, select: false },
+      roles: { type: String, required: true },
       avatar: { type: String, required: false },
       following: {
         type: [{ type: Schema.Types.ObjectId, ref: 'User' }],

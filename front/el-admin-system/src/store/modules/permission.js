@@ -1,4 +1,17 @@
 import { asyncRoutes, constantRoutes } from '@/router'
+import { queryAsyncRoutesName } from '@/api'
+
+const filterAsyncRoutes = async(routes, roles, asyncRoutesName) => {
+  const matchRoutes = []
+  routes.forEach(route => {
+    if (asyncRoutesName.includes(route.name)) {
+      matchRoutes.push(route)
+    }
+    if (route.children) {
+      filterAsyncRoutes(route.children, roles, asyncRoutesName)
+    }
+  })
+}
 
 const state = {
   routes: [],
@@ -13,8 +26,24 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes({commit},roles) {
-    return new Promise
+  generateRoutes: async({ commit }, roles) => {
+    try {
+      let accessedRoutes
+      if (roles.includes('admin')) {
+        accessedRoutes = asyncRoutes || []
+      } else {
+        const asyncRoutesName = await queryAsyncRoutesName(roles)
+        if (asyncRoutesName && asyncRoutesName.length) {
+          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles, asyncRoutesName)
+        } else {
+          accessedRoutes = []
+        }
+      }
+      commit('SET_ROUTES', accessedRoutes)
+      return Promise.resolve(accessedRoutes)
+    } catch (err) {
+      return Promise.reject(err)
+    }
   }
 }
 

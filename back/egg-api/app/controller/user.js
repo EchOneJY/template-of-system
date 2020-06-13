@@ -8,8 +8,8 @@ const HashSalt = '11111'
 class UserController extends BaseController {
   async info() {
     const { ctx } = this
-    const { userid: _id } = ctx.state
-    const user = await this.ctx.model.User.findOne({ _id })
+    const { userid: _id='',token='' } = ctx.state
+    const user = await this.ctx.model.User.findOne({ $or: [{_id}, {token}]})
     this.success(user)
   }
 
@@ -23,13 +23,14 @@ class UserController extends BaseController {
 
   async login() {
     const { ctx, app } = this
-    const { captcha, username: name, password } = ctx.request.body
+    const { captcha, username: name, password,roles } = ctx.request.body
     if (captcha.toUpperCase() === ctx.session.captcha.toUpperCase()) {
       const hasName = await this.ctx.model.User.findOne({ name })
       if (hasName == null) {
         await ctx.model.User.create({
           name,
           password: md5(password + HashSalt),
+          roles
         })
       }
       const isUser = await this.ctx.model.User.findOne({
@@ -48,7 +49,7 @@ class UserController extends BaseController {
             expiresIn: '1h',
           }
         )
-        this.success({ token, name })
+        this.success({ token, name, roles })
       } else {
         this.error('用户名密码错误')
       }

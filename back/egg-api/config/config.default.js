@@ -20,8 +20,8 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: {
-      enable: false,
-    },
+      enable: false
+    }
   }
 
   // add your user config here
@@ -34,17 +34,17 @@ module.exports = appInfo => {
     ...userConfig,
     security: {
       csrf: {
-        enable: false,
-      },
+        enable: false
+      }
     },
     mongoose: {
       client: {
-        url: 'mongodb://127.0.0.1:27017/egg_test',
-        options: {},
-      },
+        url: 'mongodb://127.0.0.1:27017/system_template',
+        options: {}
+      }
     },
     jwt: {
-      secret: '11111',
-    },
+      secret: '11111'
+    }
   }
 }

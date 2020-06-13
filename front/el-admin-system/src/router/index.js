@@ -1,11 +1,17 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 
 import Layout from '@/layout'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
 export const constantRoutes = [
+  {
+    path: '/login',
+    component: () => import('@/views/login'),
+    name: 'Login',
+    meta: { title: 'Login' }
+  },
   {
     path: '/',
     component: Layout,
@@ -22,6 +28,7 @@ export const constantRoutes = [
   {
     path: '/icon',
     component: Layout,
+    redirect: '/icon/index',
     children: [
       {
         path: 'index',
@@ -34,13 +41,14 @@ export const constantRoutes = [
   {
     path: '/nested',
     component: Layout,
+    redirect: '/nested/page-one',
     name: 'Nested',
     children: [
       {
         path: 'page-one',
         component: () => import('@/views/nested/pageOne'),
         name: 'PageOne',
-        mata: { title: 'PageTwo' }
+        mata: { title: 'PageOne' }
       },
       {
         path: 'page-two',
@@ -76,17 +84,39 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
+        path: 'markdown',
+        component: () => import('@/views/editor/markdown'),
+        name: 'Markdown',
+        mata: { title: 'Markdown', roles: ['editor'] }
+      }
+    ]
+  },
+  {
+    path: '/authorizon',
+    component: Layout,
+    children: [
+      {
         path: 'index',
-        component: () => import('@/views/editor'),
-        name: 'Editor',
-        mata: { title: 'Editor', role: ['admin', 'editor'] }
+        component: () => import('@/views/authorizon'),
+        name: 'Authorizon',
+        mata: { title: 'Athorizon', roles: ['visitor', 'editor'] }
       }
     ]
   }
 ]
 
-const router = new VueRouter({
+const createRouter = () => new Router({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
+
+const router = createRouter()
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
 
 export default router

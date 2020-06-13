@@ -3,8 +3,8 @@ const router = new Router()
 
 const routes = require('../moker/routes.json')
 
-router.get('/match', async ctx => {
-  const role = ctx.request.query.role
+router.get('/match/:role', async ctx => {
+  const role = ctx.params.role
   const result = []
   routes.forEach(route => {
     if (route.roles.includes(role)) {

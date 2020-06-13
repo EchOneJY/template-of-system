@@ -8,6 +8,7 @@ module.exports = app => {
   const { router, controller } = app
   const jwt = app.middleware.jwt({ app })
   router.get('/', controller.home.index)
+  router.get('/routes/match', controller.routes.match)
   router.group({ name: 'user', prefix: '/user' }, router => {
     const {
       info,

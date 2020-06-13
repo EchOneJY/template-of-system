@@ -155,12 +155,17 @@ Vue.use(PageHeader)
 Vue.use(CascaderPanel)
 Vue.use(Scrollbar)
 
-Vue.use(Loading.directive)
+const _Loading = Loading
+const { directive: loadingDirective, service: loadingService } = _Loading
+const _MessageBox = MessageBox
+const { alert, confirm, prompt } = _MessageBox
 
-Vue.prototype.$loading = Loading.service
-Vue.prototype.$msgbox = MessageBox
-Vue.prototype.$alert = MessageBox.alert
-Vue.prototype.$confirm = MessageBox.confirm
-Vue.prototype.$prompt = MessageBox.prompt
+Vue.use(loadingDirective)
+
+Vue.prototype.$loading = loadingService
+Vue.prototype.$msgbox = _MessageBox
+Vue.prototype.$alert = alert
+Vue.prototype.$confirm = confirm
+Vue.prototype.$prompt = prompt
 Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message

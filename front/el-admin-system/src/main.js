@@ -7,6 +7,8 @@ import './config/element'
 
 import './styles/index.scss'
 
+import './permission'
+
 Vue.config.productionTip = false
 
 new Vue({
