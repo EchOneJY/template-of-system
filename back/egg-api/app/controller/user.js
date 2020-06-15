@@ -23,25 +23,27 @@ class UserController extends BaseController {
 
   async login() {
     const { ctx, app } = this
-    const { captcha, username: name, password,roles } = ctx.request.body
+    const { captcha, username: name, password,role } = ctx.request.body
     if (captcha.toUpperCase() === ctx.session.captcha.toUpperCase()) {
-      const hasName = await this.ctx.model.User.findOne({ name })
+      const hasName = await this.ctx.model.User.findOne({ name,role })
       if (hasName == null) {
         await ctx.model.User.create({
           name,
           password: md5(password + HashSalt),
-          roles
+          role
         })
       }
       const isUser = await this.ctx.model.User.findOne({
         name,
         password: md5(password + HashSalt),
+        role
       })
 
       if (isUser) {
         const token = app.jwt.sign(
           {
             name,
+            role,
             _id: isUser._id,
           },
           app.config.jwt.secret,
@@ -49,7 +51,7 @@ class UserController extends BaseController {
             expiresIn: '1h',
           }
         )
-        this.success({ token, name, roles })
+        this.success({ token, name, role })
       } else {
         this.error('用户名密码错误')
       }

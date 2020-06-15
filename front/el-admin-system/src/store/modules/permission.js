@@ -1,17 +1,32 @@
 import { asyncRoutes, constantRoutes } from '@/router'
 import { queryAsyncRoutesName } from '@/api'
 
-const filterAsyncRoutes = async(routes, roles, asyncRoutesName) => {
+function filterAsyncRoutes(routes, asyncRoutesName) {
   const matchRoutes = []
   routes.forEach(route => {
     if (asyncRoutesName.includes(route.name)) {
       matchRoutes.push(route)
-    }
-    if (route.children) {
-      filterAsyncRoutes(route.children, roles, asyncRoutesName)
+    } else if (route.children) {
+      route.children = filterAsyncRoutes(route.children, asyncRoutesName)
+      if (route.children.length) {
+        matchRoutes.push(route)
+      }
     }
   })
+  // console.log(matchRoutes)
+  return matchRoutes
 }
+
+// function isChildHasRoute(route,asyncRoutesName) {
+//   const tmp = {...route}
+//   if(asyncRoutesName.includes(tmp.name)) {
+//     return tmp
+//   }else {
+//     if(tmp.children) {
+//       tmp.children = isChildHasRoute(tmp.children,asyncRoutesName)
+//     }
+//   }
+// }
 
 const state = {
   routes: [],
@@ -26,15 +41,17 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes: async({ commit }, roles) => {
+  generateRoutes: async({ commit }, role) => {
     try {
       let accessedRoutes
-      if (roles.includes('admin')) {
+      if (role === 'admin') {
         accessedRoutes = asyncRoutes || []
       } else {
-        const asyncRoutesName = await queryAsyncRoutesName(roles)
+        const res = await queryAsyncRoutesName(role)
+        const asyncRoutesName = res.data
         if (asyncRoutesName && asyncRoutesName.length) {
-          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles, asyncRoutesName)
+          accessedRoutes = filterAsyncRoutes(asyncRoutes, asyncRoutesName)
+          // console.log(accessedRoutes)
         } else {
           accessedRoutes = []
         }
@@ -53,3 +70,4 @@ export default {
   mutations,
   actions
 }
+

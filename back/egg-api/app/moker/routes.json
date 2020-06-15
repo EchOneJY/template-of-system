@@ -4,6 +4,10 @@
     "roles": ["admin","editor"]
   },
   {
+    "name": "Editor",
+    "roles": ["admin","editor"]
+  },
+  {
     "name": "Authorizon",
     "roles": ["admin"]
   }

@@ -10,6 +10,7 @@ export const constantRoutes = [
     path: '/login',
     component: () => import('@/views/login'),
     name: 'Login',
+    hidden: true,
     meta: { title: 'Login' }
   },
   {
@@ -21,20 +22,19 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard'),
         name: 'Dashboard',
-        mata: { title: 'Dashboard' }
+        meta: { title: 'Dashboard', icon: 'dashboard' }
       }
     ]
   },
   {
-    path: '/icon',
+    path: '/icons',
     component: Layout,
-    redirect: '/icon/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/icon'),
-        name: 'Icon',
-        mata: { title: 'Icon' }
+        component: () => import('@/views/icons'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: 'icons' }
       }
     ]
   },
@@ -43,36 +43,25 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/nested/page-one',
     name: 'Nested',
+    meta: { title: 'Nested', icon: 'nested' },
     children: [
       {
         path: 'page-one',
         component: () => import('@/views/nested/pageOne'),
         name: 'PageOne',
-        mata: { title: 'PageOne' }
+        meta: { title: 'PageOne' }
       },
       {
         path: 'page-two',
         component: () => import('@/views/nested/pageTwo'),
         name: 'PageTwo',
-        mata: { title: 'PageTwo' }
+        meta: { title: 'PageTwo' }
       },
       {
         path: 'page-three',
         name: 'PageThree',
-        children: [
-          {
-            path: 'page-one',
-            component: () => import('@/views/nested/pageThree/pageOne'),
-            name: 'PageThreeToOne',
-            mata: { title: 'PageThreeToOne' }
-          },
-          {
-            path: 'page-two',
-            component: () => import('@/views/nested/pageThree/pageTwo'),
-            name: 'PageThreeToTwo',
-            mata: { title: 'PageThreeToTwo' }
-          }
-        ]
+        meta: { title: 'PageThree' }
+
       }
     ]
   }
@@ -82,12 +71,22 @@ export const asyncRoutes = [
   {
     path: '/editor',
     component: Layout,
+    meta: { title: 'Editor' },
+    alwaysShow: true,
     children: [
       {
         path: 'markdown',
         component: () => import('@/views/editor/markdown'),
+        name: 'Editor',
+        meta: { title: 'Editor' }
+
+      },
+      {
+        path: 'page-two',
+        component: () => import('@/views/nested/pageTwo'),
         name: 'Markdown',
-        mata: { title: 'Markdown', roles: ['editor'] }
+        meta: { title: 'PageTwo' }
+
       }
     ]
   },
@@ -99,7 +98,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/authorizon'),
         name: 'Authorizon',
-        mata: { title: 'Athorizon', roles: ['visitor', 'editor'] }
+        meta: { title: 'Athorizon' }
       }
     ]
   }

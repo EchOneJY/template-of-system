@@ -4,7 +4,7 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 const state = {
   token: getToken(),
   name: '',
-  roles: ''
+  role: ''
 }
 
 const mutations = {
@@ -14,8 +14,8 @@ const mutations = {
   SET_NAME(state, name) {
     state.name = name
   },
-  SET_ROLES(state, roles) {
-    state.roles = roles
+  SET_ROLE(state, role) {
+    state.role = role
   }
 }
 
@@ -30,16 +30,16 @@ const actions = {
 
   getInfo: async({ commit }) => {
     const res = await request.get('/user/info')
-    const { roles, name } = res.data
-    commit('SET_ROLES', roles)
+    const { role, name } = res.data
+    commit('SET_ROLE', role)
     commit('SET_NAME', name)
-    return Promise.resolve({ roles, name })
+    return Promise.resolve({ role, name })
   },
 
   // remove token
   resetToken: async({ commit }) => {
     commit('SET_TOKEN', '')
-    commit('SET_ROLES', '')
+    commit('SET_ROLE', '')
     removeToken()
   }
 }

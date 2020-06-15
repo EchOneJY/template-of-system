@@ -7,6 +7,7 @@ import './config/element'
 
 import './styles/index.scss'
 
+import './icons' // icon
 import './permission'
 
 Vue.config.productionTip = false

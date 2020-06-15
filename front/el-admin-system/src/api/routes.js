@@ -1,5 +1,5 @@
 import request from '@/utils/request'
 
-export const queryAsyncRoutesName = roles => {
-  return request.get('/routes/match?roles=' + roles.join('-'))
+export const queryAsyncRoutesName = role => {
+  return request.get('/routes/' + role)
 }

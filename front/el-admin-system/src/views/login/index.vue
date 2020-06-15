@@ -33,11 +33,11 @@
                 <i slot="prepend" class="el-icon-lock" />
               </el-input>
             </el-form-item>
-            <el-form-item prop="roles">
+            <el-form-item prop="role">
               <el-input
                 type="text"
                 placeholder="登录角色"
-                :value="formatRole(formLogin.roles)"
+                :value="formatRole(formLogin.role)"
                 readonly
               >
                 <i
@@ -45,10 +45,10 @@
                   class="el-icon-connection"
                 />
                 <template slot="append">
-                  <el-select v-model="formLogin.roles" style="width:38px" size="mini">
+                  <el-select v-model="formLogin.role" style="width:38px" size="mini">
                     <el-option label="管理员" value="admin" />
-                    <el-option label="编辑" value="admin-editor" />
-                    <el-option label="游客" value="admin-visitor" />
+                    <el-option label="编辑" value="editor" />
+                    <el-option label="游客" value="visitor" />
                   </el-select>
                 </template>
               </el-input>
@@ -70,6 +70,7 @@
               <el-button
                 type="primary"
                 class="button-login"
+                :loading="loginLoading"
                 @click.native.prevent="hadleLogin"
               >
                 登录
@@ -100,19 +101,34 @@ export default {
         username: '',
         password: '',
         captcha: '',
-        roles: ''
+        role: ''
       },
       rules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' }
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-        roles: [{ required: true, message: '请输入选择角色', trigger: 'change' }],
+        role: [{ required: true, message: '请输入选择角色', trigger: 'change' }],
         captcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
       },
-      captcha: '/api/user/captcha'
+      captcha: '/api/user/captcha',
+      loginLoading: false,
+      redirect: '',
+      otherQuery: null
     }
   },
+  // watch: {
+  //   $route: {
+  //     handler: function(route) {
+  //       const query = route.query
+  //       if (query) {
+  //         this.redirect = query.redirect
+  //         this.otherQuery = this.getOtherQuery(query)
+  //       }
+  //     },
+  //     immediate: true
+  //   }
+  // },
   mounted() {
     // 初始化例子插件, 背景
     // eslint-disable-next-line no-undef
@@ -126,6 +142,7 @@ export default {
     hadleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          this.loginLoading = true
           const formData = { ...this.formLogin }
           formData.password = md5(formData.password)
           this.$store.dispatch('user/login', formData).then(res => {
@@ -134,12 +151,13 @@ export default {
               type: 'success'
             })
             setTimeout(() => {
-              this.$router.push({ path: '/' })
+              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
             }, 1000)
           }).catch(() => {
             this.resetCaptcha()
           })
         }
+        this.loginLoading = false
       })
     },
     formatRole(role) {
@@ -152,6 +170,14 @@ export default {
           return '游客'
         default:
       }
+    },
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((prev, cur) => {
+        if (cur !== 'redirect') {
+          prev[cur] = query[cur]
+        }
+        return prev
+      }, {})
     }
   }
 }

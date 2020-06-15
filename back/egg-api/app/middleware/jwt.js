@@ -6,7 +6,6 @@ module.exports = ({ app }) => {
       ctx.state.username = res.name
       ctx.state.userid = res._id
       ctx.state.token = token
-      console.log(token)
 
       await next()
     } catch (err) {
@@ -16,7 +15,6 @@ module.exports = ({ app }) => {
           message: '登陆已过期',
         })
       }
-      console.log(err)
     }
   }
 }
