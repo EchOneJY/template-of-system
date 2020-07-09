@@ -31,8 +31,6 @@ router.beforeEach(async(to, from, next) => {
           const accessRoutes = await store.dispatch('permission/generateRoutes', role)
           router.addRoutes(accessRoutes)
 
-          console.log(store.getters.permission_routes)
-
           next({ ...to, replace: true })
         } catch (error) {
           await store.dispatch('user/resetToken')

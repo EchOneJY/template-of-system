@@ -38,5 +38,14 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+  css: {
+    requireModuleExtension: true,
+    sourceMap: true,
+    loaderOptions: {
+      scss: {
+        prependData: '@import "~@/styles/variables.scss";'
+      }
+    }
   }
 }

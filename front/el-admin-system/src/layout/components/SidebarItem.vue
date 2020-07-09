@@ -2,13 +2,13 @@
   <div v-if="!item.hidden">
     <template v-if="isSingleMenu(item.children,item)&&!item.alwaysShow">
       <el-menu-item :index="resolvePath(singleMenu.path)">
-        <i class="el-icon-menu" />
+        <svg-icon v-if="singleMenu.meta&&singleMenu.meta.icon" :icon-class="singleMenu.meta.icon" />
         <span slot="title">{{ singleMenu.meta.title }}</span>
       </el-menu-item>
     </template>
     <el-submenu v-else :index="item.path">
       <template slot="title">
-        <i class="el-icon-location" />
+        <svg-icon v-if="item.meta&&item.meta.icon" :icon-class="item.meta.icon" />
         <span slot="title">{{ item.meta.title }}</span>
       </template>
       <sidebar-item v-for="child in item.children" :key="child.path" :item="child" :base-path="resolvePath(child.path)" />
@@ -31,9 +31,9 @@ export default {
     }
   },
   data() {
-    // this.singleMenu = null
+    this.singleMenu = null
     return {
-      singleMenu: null
+      // singleMenu: null
     }
   },
   methods: {
@@ -54,7 +54,6 @@ export default {
         this.singleMenu = { ...parent, path: '' }
         return true
       }
-      console.log(showChildren.length)
       return false
     },
     resolvePath(routePath) {

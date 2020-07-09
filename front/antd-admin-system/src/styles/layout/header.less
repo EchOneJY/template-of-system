@@ -1,0 +1,39 @@
+.s1-header {
+  height: 48px;
+  line-height: 48px;
+  width: 100%;
+  z-index: 9;
+  background-color: #fff;
+
+  .s1-header-container {
+    padding: 0px 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .s1-header-left {
+    .collapse {
+      font-size: 18px;
+      cursor: pointer;
+    }
+  }
+
+  .s1-header-right {
+    div {
+      cursor: pointer;
+    }
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      .ant-avatar {
+        box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+          0 2px 4px 0 rgba(232, 237, 250, 0.5);
+        margin-right: 5px;
+      }
+    }
+    .logout-menu {
+      display: flex;
+    }
+  }
+}

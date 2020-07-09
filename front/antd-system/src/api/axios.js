@@ -4,9 +4,35 @@
  *  */
 import axios from 'axios';
 import { message } from 'antd';
-import qs from 'qs';
+import {getToken} from '@/utils/auth'
 
-export default function fetchData(url,data={},method='POST') {
+const service = axios.create({
+  timeout: 5000
+})
+
+service.interceptors.request.use(
+  config => {
+    const token = getToken()
+    if(token) {
+      config.headers.Authorization = 'Bearer ' + token
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
+service.interceptors.response.use(
+  response => {
+    const {data} = response
+    if(data.code === 401) {
+      message.error()
+    }
+  }
+)
+
+export default function fetchData(url,data={},method='GET') {
     return new Promise((resolve,reject) => {
         let promise
         if(method === 'GET') { 

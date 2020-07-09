@@ -17,17 +17,6 @@ function filterAsyncRoutes(routes, asyncRoutesName) {
   return matchRoutes
 }
 
-// function isChildHasRoute(route,asyncRoutesName) {
-//   const tmp = {...route}
-//   if(asyncRoutesName.includes(tmp.name)) {
-//     return tmp
-//   }else {
-//     if(tmp.children) {
-//       tmp.children = isChildHasRoute(tmp.children,asyncRoutesName)
-//     }
-//   }
-// }
-
 const state = {
   routes: [],
   addRoutes: []
@@ -51,7 +40,6 @@ const actions = {
         const asyncRoutesName = res.data
         if (asyncRoutesName && asyncRoutesName.length) {
           accessedRoutes = filterAsyncRoutes(asyncRoutes, asyncRoutesName)
-          // console.log(accessedRoutes)
         } else {
           accessedRoutes = []
         }

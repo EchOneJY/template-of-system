@@ -64,6 +64,18 @@ export const constantRoutes = [
 
       }
     ]
+  },
+  {
+    path: '/skeleton',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/skeleton'),
+        name: 'Skeleton',
+        meta: { title: 'Skeleton', icon: 'skeleton' }
+      }
+    ]
   }
 ]
 
@@ -71,7 +83,7 @@ export const asyncRoutes = [
   {
     path: '/editor',
     component: Layout,
-    meta: { title: 'Editor' },
+    meta: { title: 'Editor', icon: 'editor' },
     alwaysShow: true,
     children: [
       {
@@ -79,14 +91,6 @@ export const asyncRoutes = [
         component: () => import('@/views/editor/markdown'),
         name: 'Editor',
         meta: { title: 'Editor' }
-
-      },
-      {
-        path: 'page-two',
-        component: () => import('@/views/nested/pageTwo'),
-        name: 'Markdown',
-        meta: { title: 'PageTwo' }
-
       }
     ]
   },
@@ -98,7 +102,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/authorizon'),
         name: 'Authorizon',
-        meta: { title: 'Athorizon' }
+        meta: { title: 'Authorizon', icon: 'authorizon' }
       }
     ]
   }

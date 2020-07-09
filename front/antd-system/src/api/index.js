@@ -36,6 +36,8 @@ export const updateTag = data => fetchData('/tag/update', data)
 export const queryArticleList = data => fetchData('/article/list', data)
 //添加文章
 export const addArticle = data => fetchData('/article/add', data)
+//文章详情
+export const queryArticleDetail = data => fetchData('/article/detail', data)
 //删除文章
 export const deleteArticle = data => fetchData('/article/delete', data)
 //更新文章

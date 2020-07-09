@@ -77,7 +77,8 @@ import {
   MessageBox,
   Message,
   Notification,
-  Scrollbar
+  Scrollbar,
+  Avatar
 } from 'element-ui'
 
 Vue.use(Pagination)
@@ -154,6 +155,7 @@ Vue.use(Backtop)
 Vue.use(PageHeader)
 Vue.use(CascaderPanel)
 Vue.use(Scrollbar)
+Vue.use(Avatar)
 
 const _Loading = Loading
 const { directive: loadingDirective, service: loadingService } = _Loading

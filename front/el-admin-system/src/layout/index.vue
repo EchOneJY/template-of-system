@@ -1,11 +1,9 @@
 <template>
-  <div class="app-wrapper">
+  <div :class="classObj" class="app-wrapper">
     <sidebar />
     <div class="main-container">
       <div class="fixed-header">
-        <div class="navbar">
-          <div class="right-menu" />
-        </div>
+        <navbar />
       </div>
       <section class="app-main">
         <transition name="fade-transform" mode="out-in">
@@ -18,9 +16,21 @@
 
 <script>
 import Sidebar from './Sidebar'
+import Navbar from './Navbar'
+import { mapGetters } from 'vuex'
 export default {
   components: {
-    Sidebar
+    Sidebar,
+    Navbar
+  },
+  computed: {
+    ...mapGetters(['sidebar']),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.collapse,
+        openSidebar: this.sidebar.collapse
+      }
+    }
   }
 }
 </script>
@@ -42,6 +52,11 @@ export default {
   right: 0;
   width: calc(100% - #{$sideBarWidth});
   transition: width 0.3s;
+  z-index: 10;
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - 54px)
 }
 
 .app-main {

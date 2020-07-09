@@ -2,6 +2,7 @@ import React from 'react'
 import Clock from './Clock'
 
 class Home extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props)
   }

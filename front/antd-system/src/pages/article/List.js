@@ -94,7 +94,12 @@ const ArticleList = ({ ...props }) => {
         <span>
           <span
             className="link-button"
-            onClick={() => props.history.push('/article/detail/' + record._id)}
+            onClick={() =>
+              props.history.push({
+                pathname: '/article/detail/' + record._id,
+                state: { test: 1 }
+              })
+            }
           >
             编辑
           </span>
