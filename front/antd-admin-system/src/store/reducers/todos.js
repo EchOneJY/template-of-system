@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux'
-import {
-  ACTION_CHANGE_TODO_INPUT,
-  ACTION_ADD_TODO_ITEM,
-  ACTION_DELETE_TODO_ITEM
-} from '../actions'
+import { ACTION_SET_INPUT_VALUE, ACTION_SET_TODO_LIST } from '../actions'
 
 export function inputValue(state = '', action) {
   const { type, payload } = action
   switch (type) {
-    case ACTION_CHANGE_TODO_INPUT:
+    case ACTION_SET_INPUT_VALUE:
       return payload
     default:
   }
@@ -21,12 +17,9 @@ export function todoList(
 ) {
   const { type, payload } = action
   switch (type) {
-    case ACTION_ADD_TODO_ITEM:
-      return state.concat(payload)
-    case ACTION_DELETE_TODO_ITEM:
-      const newState = state.slice()
-      newState.splice(payload, 1)
-      return newState
+    case ACTION_SET_TODO_LIST:
+      console.log(payload)
+      return payload
     default:
   }
   return state

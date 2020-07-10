@@ -12,6 +12,7 @@ const converter = new Showdown.Converter({
 
 const ReactMdeEditor = memo(props => {
   console.log('ReactMdeEditor')
+
   const [value, setValue] = useState(props.value)
   const [selectedTab, setSelectedTab] = useState(props.selectedTab)
 
@@ -20,13 +21,14 @@ const ReactMdeEditor = memo(props => {
       className="mde"
       minEditorHeight={350}
       minPreviewHeight={350}
-      value={value}
+      value={value || props.value}
       onChange={setValue}
       selectedTab={selectedTab}
       onTabChange={setSelectedTab}
       generateMarkdownPreview={markdown =>
         Promise.resolve(converter.makeHtml(markdown))
       }
+      readOnly={props.readOnly || false}
     />
   )
 })

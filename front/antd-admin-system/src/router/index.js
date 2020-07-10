@@ -60,15 +60,18 @@ export const BasicPageRoutes = [
       },
       {
         path: '/redux/react_redux',
-        title: 'react-redux'
+        title: 'react-redux',
+        component: Loadable(() => import('@/pages//redux/react-redux'))
       },
       {
         path: '/redux/redux_thunk',
-        title: 'redux-thunk'
+        title: 'redux-thunk',
+        component: Loadable(() => import('@/pages//redux/redux-thunk'))
       },
       {
         path: '/redux/redux_saga',
-        title: 'redux-saga'
+        title: 'redux-saga',
+        component: Loadable(() => import('@/pages//redux/redux-saga'))
       },
       {
         path: '/redux/my_redux',
