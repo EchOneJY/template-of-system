@@ -1,8 +1,9 @@
 import {
   DashboardOutlined,
-  FileWordOutlined,
+  FormOutlined,
   WarningOutlined,
-  RetweetOutlined
+  RetweetOutlined,
+  SmileOutlined
 } from '@ant-design/icons'
 
 import Loadable from '@/utils/loadable'
@@ -15,9 +16,26 @@ export const BasicPageRoutes = [
     component: Loadable(() => import('@/pages/dashboard'))
   },
   {
+    path: '/icon',
+    title: 'Icon',
+    icon: SmileOutlined,
+    children: [
+      {
+        path: '/icon/fontawesome',
+        title: 'Fontawesome',
+        component: Loadable(() => import('@/pages/icons/fontawesome'))
+      },
+      {
+        path: '/icon/customer',
+        title: 'Customer',
+        component: Loadable(() => import('@/pages/icons/customer'))
+      }
+    ]
+  },
+  {
     path: '/editor',
     title: 'Editor',
-    icon: FileWordOutlined,
+    icon: FormOutlined,
     children: [
       {
         path: '/editor/braft',

@@ -35,7 +35,7 @@ const Sidebar = props => {
             return (
               <Menu.Item
                 key={menu.path}
-                icon={<menu.icon />}
+                icon={menu.icon && <menu.icon />}
                 onClick={() => props.history.push(menu.path)}
               >
                 {menu.title}
