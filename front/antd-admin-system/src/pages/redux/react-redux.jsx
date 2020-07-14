@@ -15,7 +15,7 @@ const ReactReduxTest = props => {
   useEffect(() => {
     const defaultTodoList = ['React-Redux TodoList']
     setTodos(defaultTodoList)
-  }, [])
+  }, [setTodos])
 
   useEffect(() => {
     fetch(markdownContent)

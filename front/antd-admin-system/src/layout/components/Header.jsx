@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import { Menu, Dropdown, Avatar } from 'antd'
 import { LogoutOutlined } from '@ant-design/icons'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
 
 import '@/styles/layout/header.less'
 

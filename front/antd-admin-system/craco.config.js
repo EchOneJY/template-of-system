@@ -1,4 +1,4 @@
-const { addAfterLoader, loaderByName } = require('@craco/craco')
+const { addBeforeLoader, loaderByName } = require('@craco/craco')
 const CracoLessPlugin = require('craco-less')
 const path = require('path')
 
@@ -21,7 +21,7 @@ const webpackConfig = {
   }
 }
 
-addAfterLoader(webpackConfig, loaderByName('file-loader'), myNewWebpackLoader)
+addBeforeLoader(webpackConfig, loaderByName('file-loader'), myNewWebpackLoader)
 
 module.exports = {
   webpack: {

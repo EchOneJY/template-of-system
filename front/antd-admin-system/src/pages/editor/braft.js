@@ -2,7 +2,7 @@ import 'braft-editor/dist/index.css'
 import React from 'react'
 import BraftEditor from 'braft-editor'
 import { ContentUtils } from 'braft-utils'
-import { ImageUtils } from 'braft-finder'
+// import { ImageUtils } from 'braft-finder'
 import { Upload } from 'antd'
 import { PictureOutlined } from '@ant-design/icons'
 

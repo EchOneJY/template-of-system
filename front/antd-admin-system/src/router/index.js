@@ -93,7 +93,8 @@ export const BasicPageRoutes = [
       },
       {
         path: '/redux/my_redux',
-        title: 'my-redux'
+        title: 'my-redux',
+        component: Loadable(() => import('@/pages//redux/my-redux'))
       }
     ]
   }
