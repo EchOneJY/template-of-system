@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Card, Form, Input, Button, notification } from 'antd';
+import { history } from 'umi';
+import { Card, Form, Input, Button, notification, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 // import md5 from 'md5';
 
@@ -7,9 +8,7 @@ import './login.less';
 import { LoginParamsType, fakeAccountLogin } from './service';
 // import { setToken } from '@/utils/auth'
 
-interface LoginProps {
-  history: History;
-}
+interface LoginProps {}
 
 const Login: FC<LoginProps> = props => {
   console.log(props);
@@ -18,41 +17,46 @@ const Login: FC<LoginProps> = props => {
 
   const onFinish = (values: any) => {
     const data = { ...values };
-    fakeAccountLogin(data).then(res => {
-      // setToken(res.data.token)
-      console.log(res);
-      notification.success({
-        message: '登陆成功',
-        duration: 2,
+    fakeAccountLogin(data)
+      .then(res => {
+        if (res.status === 'ok') {
+          notification.success({
+            message: '登陆成功',
+            duration: 2,
+          });
+          setTimeout(() => {
+            // let redirect = '/'
+            // if (props.location.search) {
+            //   redirect = props.location.search.split('=')[1]
+            // }
+            // console.log(redirect)
+            history.push('/');
+          }, 700);
+        } else {
+          message.warning(res.message);
+          if (res.message === '验证码错误') {
+            setTimeout(() => {
+              formLogin.setFieldsValue({
+                captcha: '',
+              });
+              setCaptcha('/api/captcha?_t=' + new Date().getTime());
+            }, 500);
+          }
+          if (res.message === '帐号密码错误') {
+            setTimeout(() => {
+              formLogin.setFieldsValue({
+                password: '',
+                captcha: '',
+              });
+              setCaptcha('/api/captcha?_t=' + new Date().getTime());
+            }, 500);
+          }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        setCaptcha('/api/captcha?_t=' + new Date().getTime());
       });
-      // setTimeout(() => {
-      //   let redirect = '/'
-      //   if (props.location.search) {
-      //     redirect = props.location.search.split('=')[1]
-      //   }
-      //   console.log(redirect)
-      //   props.history.push(redirect || '/')
-      // }, 700)
-    });
-    // .catch(error => {
-    //   console.log(error)
-    //   if (error.message === '验证码错误') {
-    //     setTimeout(() => {
-    //       formLogin.setFieldsValue({
-    //         captcha: ''
-    //       })
-    //     }, 500)
-    //   }
-    //   if (error.message === '用户名密码错误') {
-    //     setTimeout(() => {
-    //       formLogin.setFieldsValue({
-    //         password: '',
-    //         captcha: ''
-    //       })
-    //     }, 500)
-    //   }
-    //   setCaptcha('user/captcha?_t=' + new Date().getTime())
-    // })
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { FC, memo, SetStateAction } from 'react';
+import { history } from 'umi';
 import { Menu, Dropdown, Avatar } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
@@ -15,7 +16,7 @@ const Header: FC<HeaderProps> = memo(props => {
 
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item onClick={() => history.push('/user/login')}>
         <span className="logout-menu">
           <LogoutOutlined />
           退出登录

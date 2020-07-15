@@ -26,7 +26,7 @@ function login(req: Request, res: Response) {
   if (captcha.toUpperCase() !== captchaText.toUpperCase()) {
     res.send({
       status: 'error',
-      message: '验证码输入有误',
+      message: '验证码错误',
     });
     return;
   }
@@ -48,7 +48,7 @@ function login(req: Request, res: Response) {
   res.send({
     status: 'error',
     currentAuthority: 'guest',
-    message: '帐号密码输入有误',
+    message: '帐号密码错误',
   });
 }
 
