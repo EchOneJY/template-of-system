@@ -1,0 +1,52 @@
+.login-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-60%);
+  .login-logo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    z-index: 10;
+  }
+  .form-wrapper {
+    margin-top: -50px;
+    // 重新设置卡片阴影
+    .ant-card {
+      width: 320px;
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+        0 2px 4px 0 rgba(232, 237, 250, 0.5);
+      border-radius: 4px;
+      .ant-card-body {
+        padding: 70px 30px 18px 30px;
+      }
+    }
+    .login-input {
+      .ant-input {
+        height: 36px;
+      }
+    }
+
+    .captcha-input {
+      .ant-input-group-addon:last-child {
+        padding: 0;
+      }
+      .captcha {
+        width: 80px;
+      }
+    }
+
+    .ant-input-password {
+      height: 36px;
+    }
+
+    .login-btn {
+      width: 100%;
+      height: 36px;
+      margin-top: 10px;
+    }
+  }
+}

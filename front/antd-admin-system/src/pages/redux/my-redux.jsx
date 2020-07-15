@@ -93,7 +93,7 @@ function connect(mapStateToProps = state => state, mapDispatchToProps = {}) {
   }
 }
 
-export class Provider extends React.Component {
+export class Provider extends Component {
   static childContextTypes = {
     store: PropTypes.object
   }

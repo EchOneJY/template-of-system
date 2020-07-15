@@ -1,0 +1,27 @@
+.s1-sidebar {
+  overflow: hidden;
+  background-color: #001529;
+  transition: background-color 0.3s;
+  &.s1-sidebar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    height: 100%;
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+  }
+  .ant-menu-inline-collapsed {
+    width: 100%;
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      width: 48px;
+      padding: 0 16px !important;
+      .anticon {
+        transition: none;
+        & + span {
+          transition: none;
+        }
+      }
+    }
+  }
+}
